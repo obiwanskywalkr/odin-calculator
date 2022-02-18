@@ -1,0 +1,38 @@
+.calculator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sumContainer {
+    width: 500px;
+    height: 100px;
+    border: 3px solid;
+    display: flex;
+    justify-content: end;    
+}
+#sum {
+    display: inline-block;
+    align-self: flex-end;
+}
+.tools {
+    display: flex;
+}
+#numbers {
+    width: 400px;
+    height: 700px;
+    border: 3px solid;
+    display: flex;
+    justify-content: baseline;
+    flex-wrap: wrap;
+    column-gap: 150px;
+    row-gap: 50px
+}
+#operators {
+    width: 100px;
+    height: 700px;
+    border: 3px solid;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
