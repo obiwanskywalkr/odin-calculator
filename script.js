@@ -10,6 +10,7 @@ const operators = document.querySelectorAll('.operatorButton');
 const equals = document.getElementById('runOperation');
 const allClear = document.getElementById('allClear');
 const clear = document.getElementById('clear');
+const percent = document.getElementById('percent')
 let currentValue = [];
 let storedValue = currentValue;
 let storedOperator = [];
@@ -44,14 +45,18 @@ clear.addEventListener('click', () => {
     currentValue = [];
     display.textContent = '0';
 });
+percent.addEventListener('click', () => {
+    currentValue = (currentValue.join('')) / 100;
+    display.textContent = currentValue;
+});
 
 function operate(currentOperator, a, b) {
-    if ((typeof(storedValue) == 'object')) {
-        a = parseInt(storedValue.join(''));
-    } else {
+    (typeof(storedValue) == 'object') ?
+        a = parseInt(storedValue.join('')) :
         a = storedValue;
-    }
+
     b = parseInt(currentValue.join(''));
+
     if (storedOperator[0] === 'add') {
         sum = operator.add(a, b);
         displaySum();
