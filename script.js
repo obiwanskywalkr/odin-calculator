@@ -4,13 +4,15 @@ const operator = {
     multiply: (a, b) => a * b,
     divide: (a, b) => a / b,
 }
+
 const display = document.getElementById('display');
 const numbers = document.querySelectorAll('.numberButton');
 const operators = document.querySelectorAll('.operatorButton');
 const equals = document.getElementById('runOperation');
 const allClear = document.getElementById('allClear');
 const clear = document.getElementById('clear');
-const percent = document.getElementById('percent')
+const percent = document.getElementById('percent');
+const decimal = document.querySelector('.decimal')
 let currentValue = [];
 let storedValue = currentValue;
 let storedOperator = [];
@@ -19,12 +21,19 @@ let sum;
 numbers.forEach(number => {
     number.addEventListener('click', (e) => {
         currentValue.push(e.currentTarget.textContent);
-        if (currentValue.length >= 7) {
-            display.textContent = parseInt(currentValue.join('')).toExponential(2);
-        } else {
+        (currentValue.length >= 7) ?
+            display.textContent = parseInt(currentValue.join('')).toExponential(2) :
             display.textContent = currentValue.join('');
-        }
     });
+});
+decimal.addEventListener('click', (e) => {
+    const hasDecimal = currentValue.some((i) => i == '.');
+    if (hasDecimal) {
+        return
+    } else {
+    currentValue.push(e.currentTarget.textContent)
+    display.textContent = currentValue.join('');
+    }
 });
 operators.forEach(operator => {
     operator.addEventListener('click', (e) => {
@@ -57,10 +66,9 @@ function operate(currentOperator, a, b) {
     }
 
     (typeof(storedValue) == 'object') ?
-        a = parseInt(storedValue.join('')) :
+        a = parseFloat(storedValue.join('')) :
         a = storedValue;
-
-    b = parseInt(currentValue.join(''));
+    b = parseFloat(currentValue.join(''));
 
     if (storedOperator[0] === 'add') {
         sum = operator.add(a, b);
@@ -85,7 +93,7 @@ function operate(currentOperator, a, b) {
 }
 
 function displaySum() {
-    storedValue = sum;
+    storedValue = sum.toFixed(2);
     if (storedValue > 999999) {
         display.textContent = storedValue.toExponential(2);
     } else {
