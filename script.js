@@ -51,6 +51,11 @@ percent.addEventListener('click', () => {
 });
 
 function operate(currentOperator, a, b) {
+    if (storedValue.length == 0 || currentValue.length == 0) {
+        currentValue = [];
+        return display.textContent = 'ERROR';
+    }
+
     (typeof(storedValue) == 'object') ?
         a = parseInt(storedValue.join('')) :
         a = storedValue;
@@ -70,6 +75,9 @@ function operate(currentOperator, a, b) {
         displaySum();
         storedOperator = [];
     } else if (storedOperator[0] === 'divide') {
+        if (b == 0) {
+            return display.textContent = '😉'
+        }
         sum = operator.divide(a, b);
         displaySum();
         storedOperator = [];
