@@ -1,17 +1,27 @@
+body {
+   background-color: #F5F5F5; 
+   font-family: 'Poppins', sans-serif;
+}
 .calculator {
+    margin-top: 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.sumContainer {
-    width: 500px;
+.displayContainer {
+    width: 355px;
     height: 100px;
-    border: 3px solid;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    background-color: black;
+    color: #F5F5F5;
     display: flex;
     justify-content: end;    
 }
-#sum {
+#display {
+    font-size: 65px;
+    padding-right: 35px;
     display: inline-block;
     align-self: flex-end;
 }
@@ -19,20 +29,76 @@
     display: flex;
 }
 #numbers {
-    width: 400px;
-    height: 700px;
-    border: 3px solid;
+    width: 250px;
+    height: 450px;
+    padding: 0px 0px 10px 10px;
+    border-bottom-left-radius: 25px;
+    background-color: black;
     display: flex;
-    justify-content: baseline;
+    justify-content: center;
     flex-wrap: wrap;
-    column-gap: 150px;
-    row-gap: 50px
+    gap: 5px;
 }
-#operators {
-    width: 100px;
-    height: 700px;
-    border: 3px solid;
+.numberTool {
+    width: 75px;
+    height: 75px;
+    border: none;
+    border-radius: 50%;
+    font-size: 25px;
+    background-color: #FFA500;
+    color: #F5F5F5;
+}
+.numberButton {
+    width: 75px;
+    height: 75px;
+    border: none;
+    border-radius: 50%;
+    font-size: 25px;
+    background-color: #525252;
+    color: #F5F5F5;
+}
+#zero {
+    width: 150px;
+    height: 75px;
+    border-radius: 50px;
+}
+.decimal {
+    width: 75px;
+    height: 75px;
+    border: none;
+    border-radius: 50%;
+    font-size: 25px;
+    background-color: #525252;
+    color: #F5F5F5;
+}
+#operations {
+    width: 85px;
+    height: 450px;
+    padding: 0px 10px 10px 0px;
+    border-bottom-right-radius: 25px;
+    font-size: 50px;
+    background-color: black;
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    align-items: center;
+    row-gap: 16px;
+}
+.operatorButton {
+    width: 75px;
+    height: 75px;
+    border: none;
+    border-radius: 50%;
+    font-size: 25px;
+    font-weight: bolder;
+    background-color: #FFA500;
+    color: #F5F5F5;
+}
+#runOperation {
+    width: 75px;
+    height: 75px;
+    border: none;
+    border-radius: 50%;
+    font-size: 25px;
+    background-color: #FFA500;
+    color: #F5F5F5;
 }
