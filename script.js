@@ -34,6 +34,16 @@ operators.forEach(operator => {
 equals.addEventListener('click', () => {
     operate();
 });
+allClear.addEventListener('click', () => {
+    currentValue = [];
+    storedValue = currentValue;
+    storedOperator = [];
+    display.textContent = '0';
+});
+clear.addEventListener('click', () => {
+    currentValue = [];
+    display.textContent = '0';
+});
 
 function operate(currentOperator, a, b) {
     if ((typeof(storedValue) == 'object')) {
@@ -61,15 +71,6 @@ function operate(currentOperator, a, b) {
         sum = operator.divide(a, b);
         storedValue = sum;
         storedOperator = [];
-        display.textContent = storedValue;
-    }
-}
-
-function displaySum(sum) {
-    storedValue = sum;
-    if (storedValue > 999999) {
-        display.textContent = storedValue.toExponential(2);
-    } else {
         display.textContent = storedValue;
     }
 }
