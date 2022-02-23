@@ -54,23 +54,28 @@ function operate(currentOperator, a, b) {
     b = parseInt(currentValue.join(''));
     if (storedOperator[0] === 'add') {
         sum = operator.add(a, b);
-        storedValue = sum;
+        displaySum();
         storedOperator = [];
-        display.textContent = storedValue;
     } else if (storedOperator[0] === 'subtract') {
         sum = operator.subtract(a, b);
-        storedValue = sum;
+        displaySum();
         storedOperator = [];
-        display.textContent = storedValue;
     } else if (storedOperator[0] === 'multiply') {
         sum = operator.multiply(a, b);
-        storedValue = sum;
+        displaySum();
         storedOperator = [];
-        display.textContent = storedValue;
     } else if (storedOperator[0] === 'divide') {
         sum = operator.divide(a, b);
-        storedValue = sum;
+        displaySum();
         storedOperator = [];
+    }
+}
+
+function displaySum() {
+    storedValue = sum;
+    if (storedValue > 999999) {
+        display.textContent = storedValue.toExponential(2);
+    } else {
         display.textContent = storedValue;
     }
 }
