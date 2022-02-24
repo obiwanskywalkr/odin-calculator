@@ -93,10 +93,11 @@ function operate(currentOperator, a, b) {
 }
 
 function displaySum() {
-    storedValue = sum.toFixed(2);
-    if (storedValue > 999999) {
+    storedValue = sum;
+    if (storedValue > 9999999) {
         display.textContent = storedValue.toExponential(2);
     } else {
+        storedValue.toFixed(2);
         display.textContent = storedValue;
     }
 }
