@@ -26,6 +26,7 @@ numbers.forEach(number => {
             display.textContent = currentValue.join('');
     });
 });
+
 decimal.addEventListener('click', (e) => {
     const hasDecimal = currentValue.some((i) => i == '.');
     if (hasDecimal) {
@@ -35,28 +36,65 @@ decimal.addEventListener('click', (e) => {
     display.textContent = currentValue.join('');
     }
 });
+
 operators.forEach(operator => {
     operator.addEventListener('click', (e) => {
         storedOperator.push(e.currentTarget.value);
         currentValue = [];
     });
 });
+
 equals.addEventListener('click', () => {
     operate();
 });
+
 allClear.addEventListener('click', () => {
-    currentValue = [];
-    storedValue = currentValue;
-    storedOperator = [];
-    display.textContent = '0';
+    clearAll();
 });
+
 clear.addEventListener('click', () => {
-    currentValue = [];
-    display.textContent = '0';
+    clearCurrentValue();
 });
+
 percent.addEventListener('click', () => {
-    currentValue = (currentValue.join('')) / 100;
-    display.textContent = currentValue;
+    convertPercentage();
+});
+
+window.addEventListener('keydown', (e) => {
+    if (e.key >=0 || e.key <= 9) {
+        currentValue.push(e.key);
+        (currentValue.length >= 7) ?
+        display.textContent = parseInt(currentValue.join('')).toExponential(2) :
+        display.textContent = currentValue.join('');
+    } else if (e.key == '.') {
+        const hasDecimal = currentValue.some((i) => i == '.');
+        if (hasDecimal) {
+            return
+        } else {
+        currentValue.push(e.key)
+        display.textContent = currentValue.join('');
+        }
+    } else if (e.key == '=' || e.key == 'Enter') {
+        operate();
+    } else if (e.key == 'Backspace') {
+        clearCurrentValue();
+    } else if (e.key == 'Delete') {
+        clearAll();
+    } else if (e.key == '%') {
+        convertPercentage();
+    } else if (e.key == '/') {
+        storedOperator.push('divide');
+        currentValue = [];
+    } else if (e.key == '*' || e.key == 'x') {
+        storedOperator.push('multiply');
+        currentValue = [];
+    } else if (e.key == '-') {
+        storedOperator.push('subtract');
+        currentValue = [];
+    } else if (e.key == '+') {
+        storedOperator.push('add');
+        currentValue = [];
+    }
 });
 
 function operate(currentOperator, a, b) {
@@ -96,8 +134,29 @@ function displaySum() {
     storedValue = sum;
     if (storedValue > 9999999) {
         display.textContent = storedValue.toExponential(2);
+    } else if ((storedValue % 1) != 0) {
+        display.textContent = storedValue.toFixed(2);;
     } else {
-        storedValue.toFixed(2);
         display.textContent = storedValue;
     }
+}
+
+function clearCurrentValue() {
+    currentValue.pop();
+    display.textContent = currentValue.join('');
+    if (currentValue.length === 0) {
+        display.textContent = '0';
+    }
+}
+
+function clearAll() {
+    currentValue = [];
+    storedValue = currentValue;
+    storedOperator = [];
+    display.textContent = '0';
+}
+
+function convertPercentage() {
+    currentValue = (currentValue.join('')) / 100;
+    display.textContent = currentValue;
 }
