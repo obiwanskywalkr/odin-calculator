@@ -8,7 +8,7 @@ h1 {
     color: #212529;
 }
 .calculator {
-    margin-top: 12%;
+    margin-top: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
